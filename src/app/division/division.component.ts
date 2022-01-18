@@ -12,10 +12,14 @@ export class DivisionComponent implements OnInit {
   divisions?:Division[];
   currentDivision:Division={};
   name='';
+  http: any;
+  status: string | undefined;
   constructor(private divisionService:DivisionService) { }
 
   ngOnInit(): void {
     this.retrieveDivision()
+    this.http.delete('https://spa-api.aqiladigital.com/api/divisions/id')
+    .subscribe(() => this.status = 'Delete successful');
   }
 
   retrieveDivision():void{
